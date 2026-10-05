@@ -44,6 +44,8 @@ composer require flairuk/laravel-sumup
 php artisan sumup:install
 ```
 
+Requires PHP 8.2 or later with Laravel 12, or PHP 8.3 or later with Laravel 13.
+
 `sumup:install` publishes `config/sumup.php` and adds any of these keys that are missing to `.env` and `.env.example`, empty. Fill them in:
 
 ```dotenv
@@ -287,7 +289,7 @@ All three are in `FLAIRUK\SumUp\Events`.
 
 How the route answers:
 
-- **200, empty body:** the notification was handled. If SumUp says the checkout or transaction does not exist (404), no event is dispatched, a warning is logged and the route still answers 200, so forged or stale notifications are not retried.
+- **200, empty body:** the notification was handled. If SumUp says the checkout or transaction does not exist (404), or that the token may not see it (403), no event is dispatched, a warning is logged and the route still answers 200, so forged or stale notifications are not retried.
 - **400:** the body was not a SumUp notification.
 - **500:** SumUp could not be asked (an outage, or a 401 or 403 for your key). SumUp retries after 1 minute, 5 minutes, 20 minutes and 2 hours. Reader callbacks are retried up to 5 times.
 
@@ -340,7 +342,7 @@ The reader must be online. The result arrives as a `ReaderCheckoutStatusChanged`
 ```php
 SumUp::readers()->list();
 SumUp::readers()->find($readerId);
-SumUp::readers()->status($readerId);                   // ->data->status (ONLINE/OFFLINE), ->data->state (IDLE, WAITING_FOR_CARD...)
+SumUp::readers()->status($readerId);                   // ->data->status->value (ONLINE/OFFLINE), ->data->state->value (IDLE, WAITING_FOR_CARD...)
 SumUp::readers()->findCheckout($readerId, $checkoutId);
 SumUp::readers()->terminate($readerId);                // cancel the payment in progress
 SumUp::readers()->update($readerId, ['name' => 'Bar']);

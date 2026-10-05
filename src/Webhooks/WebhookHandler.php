@@ -50,7 +50,7 @@ class WebhookHandler
     /**
      * Handle one notification. Returns false if the body was not a SumUp notification.
      *
-     * @throws ApiException when SumUp could not be asked (other than a 404), so the request fails and SumUp retries
+     * @throws ApiException when SumUp could not be asked (other than a 404 or 403), so the request fails and SumUp retries
      */
     public function handle(Request $request): bool
     {
@@ -70,7 +70,8 @@ class WebhookHandler
                 default => null,
             };
         } catch (ApiException $e) {
-            if (! $e->notFound()) {
+            // A 404 or 403 will never succeed on retry, so answer 200 rather than have SumUp keep sending it.
+            if (! $e->notFound() && $e->status !== 403) {
                 throw $e;
             }
 
