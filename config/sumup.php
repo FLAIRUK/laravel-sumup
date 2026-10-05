@@ -27,7 +27,7 @@ return [
     'merchant_code' => env('SUMUP_MERCHANT_CODE'),
 
     // The default checkout currency and the one SumUp::money() uses.
-    'currency' => env('SUMUP_CURRENCY', 'EUR'),
+    'currency' => env('SUMUP_CURRENCY') ?: 'EUR',
 
     /*
     |--------------------------------------------------------------------------
@@ -72,7 +72,7 @@ return [
 
     'webhooks' => [
         'enabled' => env('SUMUP_WEBHOOKS', true),
-        'path' => env('SUMUP_WEBHOOK_PATH', 'sumup/webhook'),
+        'path' => env('SUMUP_WEBHOOK_PATH') ?: 'sumup/webhook',
         'middleware' => ['throttle:60,1'],
     ],
 
@@ -99,9 +99,9 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    'base_url' => env('SUMUP_BASE_URL', 'https://api.sumup.com'),
+    'base_url' => env('SUMUP_BASE_URL') ?: 'https://api.sumup.com',
 
-    'timeout' => (int) env('SUMUP_TIMEOUT', 30),
+    'timeout' => (int) (env('SUMUP_TIMEOUT') ?: 30),
 
     'connect_timeout' => 10,
 

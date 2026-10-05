@@ -79,6 +79,19 @@ class WebhookTest extends TestCase
     }
 
     #[Test]
+    public function a_notification_for_a_merchant_the_token_cannot_see_is_acknowledged_without_an_event(): void
+    {
+        Event::fake();
+        Log::spy();
+        $this->fakeApi(['/v0.1/checkouts/other' => Http::response(['error_code' => 'FORBIDDEN', 'message' => 'Forbidden'], 403)]);
+
+        $this->postJson('/sumup/webhook', ['event_type' => 'CHECKOUT_STATUS_CHANGED', 'id' => 'other'])->assertOk();
+
+        Event::assertNotDispatched(CheckoutStatusChanged::class);
+        Log::shouldHaveReceived('warning')->once();
+    }
+
+    #[Test]
     public function a_failed_verification_returns_an_error_so_sumup_retries(): void
     {
         Event::fake();

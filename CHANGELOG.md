@@ -2,6 +2,12 @@
 
 All notable changes to `laravel-sumup` will be documented in this file.
 
+## 1.0.1 - 2026-10-05
+
+- An empty `SUMUP_CURRENCY`, `SUMUP_WEBHOOK_PATH`, `SUMUP_BASE_URL` or `SUMUP_TIMEOUT`, as `sumup:install` writes them, now falls back to the default; an empty currency used to break `money()` and checkouts.
+- A webhook whose confirmation is refused with a 403 is acknowledged like a 404, instead of failing so SumUp retries it for ever.
+- README: requirements, the 403 case, and that reader `status` and `state` are enums.
+
 ## 1.0.0 - 2026-10-05
 
 First release, for Laravel 12 and 13 (PHP 8.2+), built on SumUp's official PHP SDK (`sumup/sumup-php` 0.1.6+).
