@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="160" viewBox="0 0 520 160" role="img" aria-label="SumUp for Laravel">
+  <title>SumUp for Laravel</title>
+  <defs>
+    <linearGradient id="laravel-sumup-tile" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#818CF8"/>
+      <stop offset="1" stop-color="#3730A3"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(16 16)" color="#3730A3">
+    <rect width="128" height="128" rx="32" fill="url(#laravel-sumup-tile)"/>
+    <rect x="30" y="22" width="50" height="86" rx="12" fill="#fff"/>
+    <rect x="38" y="31" width="34" height="22" rx="4" fill="currentColor"/>
+    <g fill="currentColor"><circle cx="43" cy="66" r="4"/><circle cx="55" cy="66" r="4"/><circle cx="67" cy="66" r="4"/><circle cx="43" cy="80" r="4"/><circle cx="55" cy="80" r="4"/><circle cx="67" cy="80" r="4"/><circle cx="43" cy="94" r="4"/><circle cx="55" cy="94" r="4"/><circle cx="67" cy="94" r="4"/></g>
+    <g fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round">
+      <path d="M90 34A14 14 0 0 1 90 54"/>
+      <path d="M97 25A27 27 0 0 1 97 63"/>
+      <path d="M104 16A40 40 0 0 1 104 72"/>
+    </g>
+  </g>
+  <text x="172" y="66" fill="#656D76" font-family="Inter, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="17" font-weight="600" letter-spacing="4">LARAVEL</text>
+  <text x="169" y="118" fill="#1F2328" font-family="Inter, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="56" font-weight="800" letter-spacing="-1.5">SumUp</text>
+</svg>
